@@ -31,7 +31,22 @@ public class LinkedListDemo {
          * String nodes.
          * 
          */
-
+    	LinkedList<String> link = new LinkedList<String>();
+    	link.add("cats");
+    	link.add("dogs");
+    	link.add("birds");
+    	link.add("bunny");
+    	link.remove(2);
+    	link.print();
+    	Node<String> head = link.getHead();
+    	Node<String> tail = link.getTail();
+    	Node<String> current = head;
+    	 while (current != null) {
+    		 current.setValue("1232323");
+    		 current = current.getNext();
+    	 }
+    		link.print();
     }
+    
 
 }
