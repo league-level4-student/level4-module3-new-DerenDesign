@@ -16,8 +16,25 @@ public class HowManyAreSmallerThanMe {
 
     public int howManyAreSmallerThanMe(AVLTree<Integer> avlTree, int me) {
 
-        return 0;
+        return helper(avlTree.getRoot(), me);
+        
 
     }
 
+    public static int helper(AVLNode<Integer> curr, int me) {
+    	if(curr == null) {
+    		return 0;
+    	}	
+    	int cnt = 0;
+    	AVLNode<Integer> right = curr.getRight();
+    	AVLNode<Integer> left = curr.getLeft();
+    	
+    	cnt+=helper(left,me);
+    	cnt+=helper(right, me);
+    	if(curr.getValue() < me) {
+    		cnt++;
+    	}
+    	return cnt;
+    	
+    }
 }

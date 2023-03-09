@@ -3,16 +3,19 @@ package _04_Morse_Code;
 import java.util.Scanner;
 
 import _03_Intro_to_Binary_Trees.BinaryTree;
+import _03_Intro_to_Binary_Trees.Node;
 
 public class MorseDecoder {
 
     BinaryTree<MorseCode> mcTree = new BinaryTree<MorseCode>();
 
     public static void main(String[] args) {
-
+    	Scanner input = new Scanner(System.in);
+    	System.out.println("Enter morse code here:");
+    	String in = input.nextLine();
         MorseDecoder md = new MorseDecoder();
         md.initialize();
-        md.decode();
+        md.decode(in);
 
     }
 
@@ -65,10 +68,20 @@ public class MorseDecoder {
      * english alphabet.
      * 
      */
-    void decode() {
-    	Scanner input = new Scanner(System.in);
-    	System.out.println("Enter morse code here:");
-        //String morseCode = "-.-- --- ..- .- .-. . .- -- .- --.. .. -. --.";
+    void decode(String s) {
+    	//String morseCode = "-.-- --- ..- .- .-. . .- -- .- --.. .. -. --.";
+    	String output = new String();
+    	String[] letters = s.split(" ");
+    	for(int i = 0; i < letters.length; i++) {
+    	MorseCode nodes = new MorseCode(letters[i]);
+    	Node<MorseCode> node = mcTree.search(nodes);
+    	MorseCode nodeVal = node.getValue();
+    	
+    	output+=nodeVal.getDecoded();
+    	}
+    	System.out.println(output);
+    	
+    	
     }
 
 }
